@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -88,8 +88,8 @@ final class PropertiesParser {
          * First, build a list of paths that will have values, either string or
          * object values.
          */
-        Set<Path> scopePaths = new HashSet<Path>();
-        Set<Path> valuePaths = new HashSet<Path>();
+        Set<Path> scopePaths = new LinkedHashSet<Path>();
+        Set<Path> valuePaths = new LinkedHashSet<Path>();
         for (Path path : pathMap.keySet()) {
             // add value's path
             valuePaths.add(path);

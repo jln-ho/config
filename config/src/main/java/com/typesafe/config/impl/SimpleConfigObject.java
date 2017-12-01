@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -258,7 +258,7 @@ final class SimpleConfigObject extends AbstractConfigObject implements Serializa
         boolean changed = false;
         boolean allResolved = true;
         Map<String, AbstractConfigValue> merged = new LinkedHashMap<String, AbstractConfigValue>();
-        Set<String> allKeys = new HashSet<String>();
+        Set<String> allKeys = new LinkedHashSet<String>();
         allKeys.addAll(this.keySet());
         allKeys.addAll(fallback.keySet());
         for (String key : allKeys) {
@@ -618,7 +618,7 @@ final class SimpleConfigObject extends AbstractConfigObject implements Serializa
     public Set<Map.Entry<String, ConfigValue>> entrySet() {
         // total bloat just to work around lack of type variance
 
-        HashSet<java.util.Map.Entry<String, ConfigValue>> entries = new HashSet<Map.Entry<String, ConfigValue>>();
+        LinkedHashSet<java.util.Map.Entry<String, ConfigValue>> entries = new LinkedHashSet<Map.Entry<String, ConfigValue>>();
         for (Map.Entry<String, AbstractConfigValue> e : value.entrySet()) {
             entries.add(new AbstractMap.SimpleImmutableEntry<String, ConfigValue>(
                     e.getKey(), e
@@ -639,7 +639,7 @@ final class SimpleConfigObject extends AbstractConfigObject implements Serializa
 
     @Override
     public Collection<ConfigValue> values() {
-        return new HashSet<ConfigValue>(value.values());
+        return new LinkedHashSet<ConfigValue>(value.values());
     }
 
     final private static String EMPTY_NAME = "empty config";

@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -127,7 +127,7 @@ final class SimpleConfig implements Config, MergeableValue, Serializable {
 
     @Override
     public Set<Map.Entry<String, ConfigValue>> entrySet() {
-        Set<Map.Entry<String, ConfigValue>> entries = new HashSet<Map.Entry<String, ConfigValue>>();
+        Set<Map.Entry<String, ConfigValue>> entries = new LinkedHashSet<Map.Entry<String, ConfigValue>>();
         findPaths(entries, null, object);
         return entries;
     }
