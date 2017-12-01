@@ -215,7 +215,7 @@ final class ConfigParser {
         }
 
         private AbstractConfigObject parseObject(ConfigNodeObject n) {
-            Map<String, AbstractConfigValue> values = new HashMap<String, AbstractConfigValue>();
+            Map<String, AbstractConfigValue> values = new LinkedHashMap<String, AbstractConfigValue>();
             SimpleConfigOrigin objectOrigin = lineOrigin();
             boolean lastWasNewline = false;
 
