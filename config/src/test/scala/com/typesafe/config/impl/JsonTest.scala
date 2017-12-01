@@ -9,7 +9,7 @@ import net.liftweb.{ json => lift }
 import java.io.Reader
 import java.io.StringReader
 import com.typesafe.config._
-import java.util.HashMap
+import java.util.LinkedHashMap
 import java.util.Collections
 
 class JsonTest extends TestUtils {
@@ -56,7 +56,7 @@ class JsonTest extends TestUtils {
 
         liftValue match {
             case lift.JObject(fields) =>
-                val m = new HashMap[String, AbstractConfigValue]()
+                val m = new LinkedHashMap[String, AbstractConfigValue]()
                 fields.foreach({ field => m.put(field.name, fromLift(field.value)) })
                 new SimpleConfigObject(fakeOrigin(), m)
             case lift.JArray(values) =>

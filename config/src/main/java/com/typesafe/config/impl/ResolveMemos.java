@@ -1,6 +1,6 @@
 package com.typesafe.config.impl;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +18,7 @@ final class ResolveMemos {
     }
 
     ResolveMemos() {
-        this(new HashMap<MemoKey, AbstractConfigValue>());
+        this(new LinkedHashMap<MemoKey, AbstractConfigValue>());
     }
 
     AbstractConfigValue get(MemoKey key) {
@@ -28,7 +28,7 @@ final class ResolveMemos {
     ResolveMemos put(MemoKey key, AbstractConfigValue value) {
         // completely inefficient, but so far nobody cares about resolve()
         // performance, we can clean it up someday...
-        Map<MemoKey, AbstractConfigValue> copy = new HashMap<MemoKey, AbstractConfigValue>(memos);
+        Map<MemoKey, AbstractConfigValue> copy = new LinkedHashMap<MemoKey, AbstractConfigValue>(memos);
         copy.put(key, value);
         return new ResolveMemos(copy);
     }

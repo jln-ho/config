@@ -9,7 +9,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class ConfigImpl {
         LoaderCache() {
             this.currentSystemProperties = null;
             this.currentLoader = new WeakReference<ClassLoader>(null);
-            this.cache = new HashMap<String, Config>();
+            this.cache = new LinkedHashMap<String, Config>();
         }
 
         // for now, caching as long as the loader remains the same,
@@ -247,7 +247,7 @@ public class ConfigImpl {
                 return emptyObject(origin);
 
             if (mapMode == FromMapMode.KEYS_ARE_KEYS) {
-                Map<String, AbstractConfigValue> values = new HashMap<String, AbstractConfigValue>();
+                Map<String, AbstractConfigValue> values = new LinkedHashMap<String, AbstractConfigValue>();
                 for (Map.Entry<?, ?> entry : ((Map<?, ?>) object).entrySet()) {
                     Object key = entry.getKey();
                     if (!(key instanceof String))
@@ -336,7 +336,7 @@ public class ConfigImpl {
 
     private static AbstractConfigObject loadEnvVariables() {
         Map<String, String> env = System.getenv();
-        Map<String, AbstractConfigValue> m = new HashMap<String, AbstractConfigValue>();
+        Map<String, AbstractConfigValue> m = new LinkedHashMap<String, AbstractConfigValue>();
         for (Map.Entry<String, String> entry : env.entrySet()) {
             String key = entry.getKey();
             m.put(key,
@@ -381,7 +381,7 @@ public class ConfigImpl {
         private static String SUBSTITUTIONS = "substitutions";
 
         private static Map<String, Boolean> loadDiagnostics() {
-            Map<String, Boolean> result = new HashMap<String, Boolean>();
+            Map<String, Boolean> result = new LinkedHashMap<String, Boolean>();
             result.put(LOADS, false);
             result.put(SUBSTITUTIONS, false);
 
